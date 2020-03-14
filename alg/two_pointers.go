@@ -6,14 +6,17 @@
 package alg
 
 func TwoPointersAlg(arr []int, maxChange int) int {
-	var count int
+	var count, lastJ int
 
+	lastJ = 0 // hotfix. could be idx
 	for idx, val := range arr {
 
-		for j := idx + 1; j <= len(arr) - 1; j++ {
+		for j := lastJ + 1; j <= len(arr)-1; j++ {
+
+			lastJ = j
 
 			if (arr[j] - val) <= maxChange {
-				if (j - idx) + 1 > count {
+				if (j-idx)+1 > count {
 					count = (j - idx) + 1
 				}
 			}
